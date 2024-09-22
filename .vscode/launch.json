@@ -62,7 +62,7 @@
     },
     {
       "name": "Node: Server",
-      "program": "${workspaceFolder}/src",
+      "program": "${workspaceFolder}/src/dist",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**",

@@ -20,6 +20,7 @@ RUN npm install
 COPY --chown=node:node ./src ./src
 COPY --chown=node:node ./test ./test
 COPY --chown=node:node ./.git ./.git
+COPY --chown=node:node ./tsconfig.json ./tsconfig.json
 
 RUN npm run build
 
