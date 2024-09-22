@@ -1,1 +1,1 @@
-declare module 'blipp';
+declare module 'blipp'
