@@ -1,6 +1,6 @@
 import HapiPino from 'hapi-pino'
 
-const plugin: any  = {
+const plugin: any = {
   plugin: HapiPino,
   options: {
     logPayload: true,

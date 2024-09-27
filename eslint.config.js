@@ -1,9 +1,6 @@
-import neoStandard, { plugins } from 'neostandard'
+import neoStandard from 'neostandard'
 
-export default [
-  ...neoStandard({
+export default neoStandard({
     globals: ['describe', 'beforeEach', 'expect', 'test', 'afterEach', 'jest', 'beforeAll', 'afterAll'],
     ts: true
-  }),
-  plugins['typescript-eslint'].configs.recommended
-]
+  })
