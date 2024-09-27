@@ -1,7 +1,6 @@
 import { Server } from '@hapi/hapi'
 import Inert from '@hapi/inert'
 import Crumb from '@hapi/crumb'
-import Blipp from 'blipp'
 import logging from './logging.js'
 import errors from './errors.js'
 import views from './views.js'
@@ -19,6 +18,7 @@ async function registerPlugins (server: Server): Promise<void> {
   ]
 
   if (config.get('isDev')) {
+    const Blipp = await import('blipp')
     plugins.push(Blipp)
   }
 
