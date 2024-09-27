@@ -4,7 +4,7 @@ import { Boom } from '@hapi/boom'
 const plugin: any = {
   plugin: {
     name: 'errors',
-    register: (server: Server, options: ServerOptions) => {
+    register: (server: Server, _options: ServerOptions) => {
       server.ext('onPreResponse', (request: Request, h: ResponseToolkit) => {
         const response: ResponseObject | Boom = request.response
 
