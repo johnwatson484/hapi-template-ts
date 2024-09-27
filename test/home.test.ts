@@ -1,7 +1,8 @@
+import { Server, ServerInjectOptions, ServerInjectResponse } from '@hapi/hapi'
 import { createServer } from '../src/dist/server.js'
 
 describe('home test', () => {
-  let server
+  let server: Server
 
   beforeEach(async () => {
     server = await createServer()
@@ -9,11 +10,11 @@ describe('home test', () => {
   })
 
   test('GET /home route returns 200', async () => {
-    const options = {
+    const options: ServerInjectOptions = {
       method: 'GET',
       url: '/',
     }
-    const response = await server.inject(options)
+    const response: ServerInjectResponse = await server.inject(options)
     expect(response.statusCode).toBe(200)
   })
 

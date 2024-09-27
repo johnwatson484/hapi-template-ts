@@ -1,7 +1,8 @@
+import { Server, ServerInjectOptions, ServerInjectResponse } from '@hapi/hapi'
 import { createServer } from '../src/dist/server.js'
 
 describe('health test', () => {
-  let server
+  let server: Server
 
   beforeEach(async () => {
     server = await createServer()
@@ -9,20 +10,20 @@ describe('health test', () => {
   })
 
   test('GET /healthy route returns 200', async () => {
-    const options = {
+    const options: ServerInjectOptions = {
       method: 'GET',
       url: '/healthy',
     }
-    const response = await server.inject(options)
+    const response: ServerInjectResponse = await server.inject(options)
     expect(response.statusCode).toBe(200)
   })
 
   test('GET /healthz route returns 200', async () => {
-    const options = {
+    const options: ServerInjectOptions = {
       method: 'GET',
       url: '/healthz',
     }
-    const response = await server.inject(options)
+    const response: ServerInjectResponse = await server.inject(options)
     expect(response.statusCode).toBe(200)
   })
 
