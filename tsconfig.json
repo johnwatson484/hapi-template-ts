@@ -3,7 +3,7 @@
     "outDir": "./src/dist",
     "target": "es2022",
     "module": "NodeNext",
-    "typeRoots": ["./node_modules/@types", "./types"],
+    "typeRoots": ["./node_modules/@types", "src/types"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
