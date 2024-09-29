@@ -6,3 +6,4 @@ services:
     command: npm run test:watch
     volumes:
       - ./.git:/home/node/.git
+      - ./src:/home/node/src
