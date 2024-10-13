@@ -1,8 +1,9 @@
 import 'log-timestamp'
 import { createServer } from './server.js'
+import { Server } from '@hapi/hapi'
 
 async function init (): Promise<void> {
-  const server = await createServer()
+  const server: Server = await createServer()
   await server.start()
   console.log('Server running on %s', server.info.uri)
 }
