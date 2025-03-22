@@ -1,6 +1,6 @@
 import Blankie from 'blankie'
 
-const plugin = {
+const plugin: any = {
   plugin: Blankie,
   options: {
     fontSrc: ['self'],
