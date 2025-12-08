@@ -28,7 +28,7 @@ const plugin: any = {
         },
       },
     },
-    path: '../../views',
+    path: '../../src/views',
     relativeTo: __dirname,
     isCached: !config.get('isDev'),
     context: {
