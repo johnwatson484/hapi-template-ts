@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "pretest": "npm run test:lint",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "test:watch": "vitest",
     "test:lint": "eslint",
     "test:debug": "vitest --inspect-brk",
@@ -15,7 +15,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch --sourceMap",
     "build:start": "npm run build && node dist/index.js",
-    "docker:test": "npm run test:lint && mkdir -p coverage 2>/dev/null || true && docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts",
+    "docker:test": "npm run test:lint && mkdir -p test-output 2>/dev/null || true && docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts",
     "docker:test:watch": "docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -f compose.test.watch.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts"
   },
   "author": "John Watson",
@@ -28,6 +28,7 @@
     "@hapi/inert": "7.1.0",
     "@hapi/scooter": "7.0.0",
     "@hapi/vision": "7.0.3",
+    "@vitest/coverage-v8": "4.0.15",
     "blankie": "5.0.0",
     "convict": "6.2.4",
     "convict-format-with-validator": "6.2.0",
