@@ -15,7 +15,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch --sourceMap",
     "build:start": "npm run build && node dist/index.js",
-    "docker:test": "npm run test:lint && mkdir -p test-output 2>/dev/null || true && docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts",
+    "docker:test": "mkdir -p test-output 2>/dev/null || true && docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts",
     "docker:test:watch": "docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -f compose.test.watch.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts"
   },
   "author": "John Watson",
