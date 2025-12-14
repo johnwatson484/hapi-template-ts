@@ -7,6 +7,7 @@ const route: ServerRoute = {
     directory: {
       path: [
         'src/assets/css',
+        'src/assets/images',
         'src/assets/js',
       ],
     },

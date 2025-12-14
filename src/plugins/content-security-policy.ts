@@ -5,8 +5,8 @@ const plugin: any = {
   options: {
     fontSrc: ['self'],
     imgSrc: ['self'],
-    scriptSrc: ['self', 'unsafe-inline'],
-    styleSrc: ['self', 'unsafe-inline'],
+    scriptSrc: ['self',],
+    styleSrc: ['self', 'cdn.jsdelivr.net'],
     frameAncestors: ['self'],
     formAction: ['self'],
     generateNonces: false
