@@ -1,6 +1,7 @@
+import { ServerRegisterPluginObject } from '@hapi/hapi'
 import Blankie from 'blankie'
 
-const plugin: any = {
+const plugin: ServerRegisterPluginObject<any> = {
   plugin: Blankie,
   options: {
     fontSrc: ['self'],

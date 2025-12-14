@@ -2,11 +2,12 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import nunjucks, { Template } from 'nunjucks'
 import Vision from '@hapi/vision'
+import { ServerRegisterPluginObject } from '@hapi/hapi'
 import config from '../config.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-const plugin: any = {
+const plugin: ServerRegisterPluginObject<any> = {
   plugin: Vision,
   options: {
     engines: {

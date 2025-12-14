@@ -1,4 +1,4 @@
-import { Server } from '@hapi/hapi'
+import { Server, ServerRegisterPluginObject } from '@hapi/hapi'
 import Inert from '@hapi/inert'
 import Crumb from '@hapi/crumb'
 import Scooter from '@hapi/scooter'
@@ -11,7 +11,7 @@ import router from './router.js'
 import config from '../config.js'
 
 async function registerPlugins (server: Server): Promise<void> {
-  const plugins: any[] = [
+  const plugins: ServerRegisterPluginObject<any>[] = [
     Inert,
     Crumb,
     Scooter,
@@ -24,7 +24,7 @@ async function registerPlugins (server: Server): Promise<void> {
   ]
 
   if (config.get('isDev')) {
-    const Blipp = await import('blipp')
+    const Blipp: ServerRegisterPluginObject<any> = await import('blipp')
     plugins.push(Blipp)
   }
 
