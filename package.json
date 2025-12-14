@@ -57,6 +57,9 @@
     "vitest": "4.0.15",
     "@vitest/coverage-v8": "4.0.15"
   },
+  "overrides": {
+    "tmp": "0.2.5"
+  },
   "nodemonConfig": {
     "ignore": [
       "**/test-output/**"

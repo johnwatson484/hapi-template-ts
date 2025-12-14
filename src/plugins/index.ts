@@ -8,6 +8,7 @@ import logging from './logging.js'
 import errors from './errors.js'
 import views from './views.js'
 import router from './router.js'
+import userAgentProtection from './user-agent-protection.js'
 import config from '../config.js'
 
 async function registerPlugins (server: Server): Promise<void> {
@@ -21,6 +22,7 @@ async function registerPlugins (server: Server): Promise<void> {
     headers,
     views,
     router,
+    userAgentProtection,
   ]
 
   if (config.get('isDev')) {
