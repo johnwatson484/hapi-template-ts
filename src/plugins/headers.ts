@@ -1,11 +1,11 @@
 import { Boom } from '@hapi/boom'
-import { Server, ServerOptions, Request, ResponseToolkit, ResponseObject, Plugin } from '@hapi/hapi'
+import type { Plugin, ServerOptions } from '@hapi/hapi'
 
 const plugin: Plugin<ServerOptions> = {
   name: 'headers',
-  register: (server: Server, _options: ServerOptions) => {
-    server.ext('onPreResponse', (request: Request, h: ResponseToolkit) => {
-      const response: ResponseObject | Boom = request.response
+  register: (server) => {
+    server.ext('onPreResponse', (request, h) => {
+      const response = request.response
       const headers = response instanceof Boom ? response.output.headers : response?.headers
 
       if (headers) {

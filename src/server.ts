@@ -1,22 +1,22 @@
 import { Server } from '@hapi/hapi'
 import Joi from 'joi'
-import { registerPlugins } from './plugins/index.js'
-import config from './config.js'
+import { registerPlugins } from './plugins/index.ts'
+import config from './config.ts'
 
 async function createServer (): Promise<Server> {
-  const server: Server = new Server({
+  const server = new Server({
     host: config.get('host'),
     port: config.get('port'),
     routes: {
       validate: {
         options: {
-          abortEarly: false,
-        },
-      },
+          abortEarly: false
+        }
+      }
     },
     router: {
-      stripTrailingSlash: true,
-    },
+      stripTrailingSlash: true
+    }
   })
 
   server.validator(Joi)

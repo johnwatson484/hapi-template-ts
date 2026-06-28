@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach, afterEach } from 'vitest'
-import { Server, ServerInjectOptions, ServerInjectResponse } from '@hapi/hapi'
-import { createServer } from '../dist/server.js'
+import type { Server } from '@hapi/hapi'
+import { createServer } from '../src/server.ts'
 
 describe('health test', () => {
   let server: Server
@@ -11,20 +11,12 @@ describe('health test', () => {
   })
 
   test('GET /healthy route returns 200', async () => {
-    const options: ServerInjectOptions = {
-      method: 'GET',
-      url: '/healthy',
-    }
-    const response: ServerInjectResponse = await server.inject(options)
+    const response = await server.inject({ method: 'GET', url: '/healthy' })
     expect(response.statusCode).toBe(200)
   })
 
   test('GET /healthz route returns 200', async () => {
-    const options: ServerInjectOptions = {
-      method: 'GET',
-      url: '/healthz',
-    }
-    const response: ServerInjectResponse = await server.inject(options)
+    const response = await server.inject({ method: 'GET', url: '/healthz' })
     expect(response.statusCode).toBe(200)
   })
 

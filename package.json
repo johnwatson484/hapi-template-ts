@@ -2,28 +2,27 @@
   "name": "hapi-template-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "pretest": "npm run test:lint",
+    "pretest": "npm run test:lint && npm run typecheck",
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "test:lint": "eslint",
-    "test:debug": "vitest --inspect-brk",
-    "start:watch": "npm-run-all --parallel build:watch start:nodemon",
-    "start:debug": "npm-run-all --parallel build:watch start:nodemon:debug",
-    "start:nodemon": "nodemon --inspect=0.0.0.0 --ext ts,css,njk --watch src --ignore dist --delay 1000ms --legacy-watch dist/index.js",
-    "start:nodemon:debug": "nodemon --inspect-brk=0.0.0.0 --ext ts,css,njk --watch src --ignore dist --delay 1000ms --legacy-watch dist/index.js",
-    "build": "tsc",
-    "build:watch": "tsc --watch --sourceMap",
-    "build:start": "npm run build && node dist/index.js",
-    "docker:start": "mkdir -p dist && docker compose up",
-    "docker:debug": "mkdir -p dist && docker compose -f compose.yaml -f compose.override.yaml -f compose.debug.yaml up",
-    "docker:test": "mkdir -p test-output 2>/dev/null || true && docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts",
-    "docker:test:watch": "docker compose -p hapi-template-ts-test down -v && docker compose -f compose.yaml -f compose.test.yaml -f compose.test.watch.yaml -p hapi-template-ts-test run --build --rm hapi-template-ts"
+    "test:debug": "vitest --inspect-brk --no-file-parallelism",
+    "typecheck": "tsc",
+    "start": "node src/index.ts",
+    "start:dev": "node --watch --watch-path=src src/index.ts",
+    "start:debug": "node --watch --watch-path=src --inspect=0.0.0.0 src/index.ts",
+    "docker:start": "docker compose up",
+    "docker:debug": "docker compose run --rm --service-ports hapi-template-ts npm run start:debug",
+    "docker:test": "mkdir -p test-output 2>/dev/null || true && docker compose -f compose.yaml -f compose.test.yaml run --build --rm hapi-template-ts",
+    "docker:test:watch": "docker compose -f compose.yaml -f compose.test.yaml run --build --rm hapi-template-ts npm run test:watch"
   },
   "author": "John Watson",
   "license": "MIT",
-  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "dependencies": {
     "@hapi/boom": "10.0.1",
     "@hapi/crumb": "9.0.1",
@@ -36,9 +35,7 @@
     "convict-format-with-validator": "6.2.0",
     "hapi-pino": "12.1.0",
     "joi": "18.2.1",
-    "log-timestamp": "0.3.0",
-    "nunjucks": "3.2.4",
-    "typescript": "5.6.2"
+    "nunjucks": "3.2.4"
   },
   "devDependencies": {
     "@types/convict": "6.1.6",
@@ -50,13 +47,7 @@
     "blipp": "4.0.2",
     "eslint": "9.39.1",
     "neostandard": "0.11.4",
-    "nodemon": "3.1.4",
-    "npm-run-all": "4.1.5",
+    "typescript": "6.0.3",
     "vitest": "4.1.8"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      "**/test-output/**"
-    ]
   }
 }

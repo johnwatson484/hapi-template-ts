@@ -1,11 +1,9 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
-import nunjucks, { Template } from 'nunjucks'
+import path from 'node:path'
+import nunjucks from 'nunjucks'
+import type { Template } from 'nunjucks'
 import Vision from '@hapi/vision'
-import { ServerRegisterPluginObject } from '@hapi/hapi'
-import config from '../config.js'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+import type { ServerRegisterPluginObject } from '@hapi/hapi'
+import config from '../config.ts'
 
 const plugin: ServerRegisterPluginObject<any> = {
   plugin: Vision,
@@ -21,22 +19,21 @@ const plugin: ServerRegisterPluginObject<any> = {
         },
         prepare: (options: any, next: (err?: Error) => void) => {
           options.compileOptions.environment = nunjucks.configure(path.join(options.relativeTo || process.cwd(), options.path), {
-            autoescape: true,
-            watch: config.get('isDev'),
+            autoescape: true
           })
 
           return next()
-        },
-      },
+        }
+      }
     },
-    path: '../../src/views',
-    relativeTo: __dirname,
+    path: '../views',
+    relativeTo: import.meta.dirname,
     isCached: !config.get('isDev'),
     context: {
       assetPath: '/assets',
-      appName: config.get('appName'),
-    },
-  },
+      appName: config.get('appName')
+    }
+  }
 }
 
 export default plugin

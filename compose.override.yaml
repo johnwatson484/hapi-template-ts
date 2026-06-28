@@ -4,12 +4,12 @@ services:
       target: development
     image: hapi-template-ts-development
     container_name: hapi-template-ts-development
+    init: true
     ports:
       - "3000:3000"
       - "9229:9229"
     volumes:
       - ./src:/home/node/src
-      - ./dist:/home/node/dist
       - ./package.json:/home/node/package.json
     networks:
       - hapi-template-ts

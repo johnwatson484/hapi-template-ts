@@ -1,7 +1,12 @@
 import neoStandard from 'neostandard'
 
-export default neoStandard({
-  globals: ['describe', 'beforeEach', 'expect', 'test', 'afterEach', 'jest', 'beforeAll', 'afterAll'],
-  ts: true,
-  ignores: ['**/dist/**']
-})
+export default [
+  ...neoStandard({
+    ts: true
+  }),
+  {
+    rules: {
+      '@stylistic/comma-dangle': ['error', 'never']
+    }
+  }
+]

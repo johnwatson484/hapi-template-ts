@@ -1,13 +1,13 @@
-import { Server, ServerOptions, Plugin } from '@hapi/hapi'
-import home from '../routes/home.js'
-import assets from '../routes/assets.js'
-import health from '../routes/health.js'
+import type { Plugin, ServerOptions } from '@hapi/hapi'
+import home from '../routes/home.ts'
+import assets from '../routes/assets.ts'
+import health from '../routes/health.ts'
 
 const plugin: Plugin<ServerOptions> = {
   name: 'router',
-  register: (server: Server, _options: ServerOptions) => {
-    server.route([home, assets, health].flat())
-  },
+  register: (server) => {
+    server.route([home, assets, ...health])
+  }
 }
 
 export default plugin

@@ -1,4 +1,4 @@
-import { ServerRegisterPluginObject } from '@hapi/hapi'
+import type { ServerRegisterPluginObject } from '@hapi/hapi'
 import Blankie from 'blankie'
 
 const plugin: ServerRegisterPluginObject<any> = {
@@ -6,7 +6,7 @@ const plugin: ServerRegisterPluginObject<any> = {
   options: {
     fontSrc: ['self'],
     imgSrc: ['self'],
-    scriptSrc: ['self',],
+    scriptSrc: ['self'],
     styleSrc: ['self', 'cdn.jsdelivr.net'],
     frameAncestors: ['self'],
     formAction: ['self'],

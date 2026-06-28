@@ -1,4 +1,4 @@
-import { ServerRoute } from '@hapi/hapi'
+import type { ServerRoute } from '@hapi/hapi'
 
 const route: ServerRoute = {
   method: 'GET',
@@ -8,10 +8,10 @@ const route: ServerRoute = {
       path: [
         'src/assets/css',
         'src/assets/images',
-        'src/assets/js',
-      ],
-    },
-  },
+        'src/assets/js'
+      ]
+    }
+  }
 }
 
 export default route

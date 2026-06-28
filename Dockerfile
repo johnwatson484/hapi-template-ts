@@ -1,16 +1,8 @@
-# Development
 FROM node:24-alpine AS development
 ENV NODE_ENV=development
 ARG PORT=3000
 ENV PORT=${PORT}
 EXPOSE ${PORT} 9229
-
-# Set global npm dependencies to be stored under the node user directory
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=$PATH:/home/node/.npm-global/bin
-
-RUN apk update && \
-    apk add --no-cache git
 
 USER node
 WORKDIR /home/node
@@ -19,12 +11,19 @@ COPY --chown=node:node package*.json ./
 RUN npm install
 COPY --chown=node:node . .
 
-RUN npm run build
+CMD [ "npm", "run", "start:dev" ]
 
-CMD [ "npm", "run", "start:watch" ]
-
-# Production
-FROM development AS production
+FROM node:24-alpine AS production
 ENV NODE_ENV=production
-RUN npm ci
-CMD [ "node", "dist" ]
+ARG PORT=3000
+ENV PORT=${PORT}
+EXPOSE ${PORT}
+
+USER node
+WORKDIR /home/node
+
+COPY --chown=node:node package*.json ./
+RUN npm ci --omit=dev
+COPY --chown=node:node src ./src
+
+CMD [ "node", "src/index.ts" ]

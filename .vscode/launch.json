@@ -1,7 +1,4 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
@@ -17,132 +14,54 @@
       ]
     },
     {
-      "name": "Docker: Attach Launch",
-      "type": "node",
-      "request": "attach",
-      "remoteRoot": "/home/node",
-      "restart": true,
-      "port": 9229,
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
-      "preLaunchTask": "compose-debug-up",
-      "postDebugTask": "compose-debug-down"
-    },
-    {
-      "name": "Docker: Jest Attach",
-      "type": "node",
-      "request": "attach",
-      "port": 9229,
-      "restart": true,
-      "timeout": 10000,
-      "remoteRoot": "/home/node",
-      "disableOptimisticBPs": true,
-      "continueOnAttach": true,
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ]
-    },
-    {
       "name": "Node: Launch",
-      "program": "${workspaceFolder}/src",
+      "type": "node",
       "request": "launch",
+      "program": "${workspaceFolder}/src/index.ts",
       "skipFiles": [
         "<node_internals>/**",
         "**/node_modules/**"
       ],
-      "type": "pwa-node",
       "serverReadyAction": {
         "pattern": "Server running on",
         "uriFormat": "http://localhost:3000",
-        "action": "debugWithChrome"
+        "action": "openExternally"
       }
     },
     {
-      "name": "Node: Server",
-      "program": "${workspaceFolder}/dist",
-      "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
-      "type": "pwa-node"
-    },
-    {
-      "name": "Node: Client",
-      "type": "pwa-chrome",
-      "request": "launch",
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name": "Docker: Jest Attach Launch",
-      "type": "node",
-      "request": "attach",
-      "remoteRoot": "/home/node",
-      "port": 9229,
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      },
-      "preLaunchTask": "compose-test-debug-up",
-      "postDebugTask": "compose-test-debug-down"
-    },
-    {
-      "name": "Node: Jest",
+      "name": "Node: Debug",
       "type": "node",
       "request": "launch",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "--runInBand"
-      ],
+      "program": "${workspaceFolder}/src/index.ts",
+      "stopOnEntry": true,
       "skipFiles": [
         "<node_internals>/**",
         "**/node_modules/**"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      }
-    },
-    {
-      "name": "Node: Jest Current File",
-      "type": "node",
-      "request": "launch",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "${fileBasenameNoExtension}",
-        "--config",
-        "jest.config.js"
-      ],
-      "skipFiles": [
-        "<node_internals>/**",
-        "**/node_modules/**"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      }
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Node: Client/Server",
-      "configurations": [
-        "Node: Server",
-        "Node: Client"
       ]
+    },
+    {
+      "name": "Vitest: Debug",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["--no-file-parallelism", "run"],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Vitest: Debug Current File",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+      "args": ["--no-file-parallelism", "run", "${relativeFile}"],
+      "skipFiles": [
+        "<node_internals>/**",
+        "**/node_modules/**"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }
